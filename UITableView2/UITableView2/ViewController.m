@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     
     //自动调整子视图大小
@@ -42,8 +43,43 @@
     
     //当数据的数据源发生变化 更新数据视图，重新加载数据
     [_tableView reloadData];
+    [self createBtn];
+}
+
+- (void)createBtn {
+    _isEdit = NO;
+    _btnEdit = [[UIBarButtonItem alloc] initWithTitle:@"1" style:UIBarButtonItemStylePlain target:self action:@selector(pressEdit)];
+    _btnFinsh = [[UIBarButtonItem alloc] initWithTitle:@"finish" style:UIBarButtonItemStylePlain target:self action:@selector(pressFinish)];
+    _btnDelete = [[UIBarButtonItem alloc] initWithTitle:@"delete" style:UIBarButtonItemStylePlain target:self action:@selector(pressDelete)];
+    self.navigationItem.rightBarButtonItem = _btnEdit;
     
 }
+
+- (void)pressEdit{
+    _isEdit = YES;
+    self.navigationItem.rightBarButtonItem = _btnFinsh;
+    [_tableView setEditing:YES];
+    self.navigationItem.leftBarButtonItem = _btnDelete;
+}
+
+- (void)pressFinish {
+    _isEdit = NO;
+    self.navigationItem.rightBarButtonItem = _btnEdit;
+    [_tableView setEditing:NO];
+    self.navigationItem.leftBarButtonItem = nil;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _array.count;
@@ -60,10 +96,12 @@
     UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:str];
     
     //如果没有获得到
-    if（cell == nil) {
-        cell = [UITableViewCell alloc] init
-        
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
     }
+    
+    cell.textLabel.text = [_array objectAtIndex:indexPath.row];
+    return cell;
 }
 
 

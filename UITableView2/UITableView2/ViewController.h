@@ -18,5 +18,13 @@ UITableViewDataSource
 @property UITableView *tableView;
 @property NSMutableArray *array;
 
+//添加导航按钮
+@property UIBarButtonItem *btnEdit;
+@property UIBarButtonItem *btnFinsh;
+@property UIBarButtonItem *btnDelete;
+
+//设置编辑状态
+@property bool isEdit;
+
 @end
 

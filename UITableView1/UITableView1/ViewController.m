@@ -80,12 +80,12 @@
 
 //头部高度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 80;
+    return 0;
 }
 
 //尾部高度
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 80;
+    return 0;
 }
 
 
@@ -126,5 +126,13 @@
 
 
 */
+
+- (UIView *ableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+}
+   
+
+
+- 
 
 @end
